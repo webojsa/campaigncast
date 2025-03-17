@@ -6,9 +6,7 @@
 ## Architecture
 - **Backend**: Laravel 12 (PHP 8.3 or higher).
 - **Database**: MySQL.
-    - Connections: 
-         - full
-         - restricted (To use this connection, you need to create user with restricted permissions on your database)
+    
 - **Authentication**:
     - Sanctum: Tokens for API, sessions for web.
     - Fortify: Backend authentication logic.
