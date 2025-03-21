@@ -10,7 +10,7 @@ Route::prefix('auth')->group(function(){
     Route::post('logout',[\App\Http\Controllers\AuthController::class, 'logout'])->middleware('auth:sanctum');
 });
 
-Route::middleware('auth:sanctum')->group(function(){
+Route::middleware(['auth:sanctum', 'verified'])->group(function(){
 
     Route::get('test', function(Request $request){
         return response()->json(['message' => 'Authenticated', 'user' => $request->user()]);

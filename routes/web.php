@@ -8,4 +8,4 @@ Route::get('/', function () {
 
 Route::get('/home', function () {
     return view('home');
-})->middleware('auth')->name('home');
+})->middleware(['auth','verified'])->name('home');

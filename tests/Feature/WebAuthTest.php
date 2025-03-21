@@ -76,5 +76,42 @@ class WebAuthTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function test_user_can_reset_password(): void{
+
+        \Illuminate\Support\Facades\Notification::fake();
+
+       $user = User::factory()->create();
+
+       $this->post('/forgot-password', ['email' => $user->email]);
+
+        $token = null;
+        \Illuminate\Support\Facades\Notification::assertSentTo(
+            $user,
+            \Illuminate\Auth\Notifications\ResetPassword::class,
+            function ($notification) use (&$token) {
+                $token = $notification->token;
+                return true;
+            }
+        );
+
+        $response = $this->post('/reset-password', [
+            'token' => $token,
+            'email' => $user->email,
+            'password' => 'newpassword123',
+            'password_confirmation' => 'newpassword123',
+        ]);
+
+        $response->assertStatus(302);
+        $response->assertRedirect('/login');
+
+        // Proveri da li korisnik može da se uloguje sa novom lozinkom
+        $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'newpassword123',
+        ]);
+        $this->assertAuthenticated();
+
+    }
+
 
 }
