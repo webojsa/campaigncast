@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('phone')->unique()->nullable();
             $table->string('push_token')->unique()->nullable();
-            $table->char('country_code',2);
+            $table->char('country',2);
             $table->tinyInteger('status')->index()->default(1);
             $table->softDeletes();
             $table->timestamps();

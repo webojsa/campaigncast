@@ -15,7 +15,7 @@ class SubscribersService
 
     public function storeNewSubscriber(StoreSubscriberRequest $request): Subscriber{
         $user = $request->user();
-        $data = $request->only(['email', 'phone', 'push_token', 'name', 'country_code']);
+        $data = $request->only(['email', 'phone', 'push_token', 'name', 'country']);
         return $user->subscribers()->create($data);
     }
 }

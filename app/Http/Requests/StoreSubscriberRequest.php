@@ -11,7 +11,7 @@ class StoreSubscriberRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth('sanctum')->check();
+        return auth('sanctum')->check() || auth()->check();
     }
 
     /**
@@ -25,7 +25,7 @@ class StoreSubscriberRequest extends FormRequest
             'email' => 'nullable|email|unique:subscribers,email',
             'phone' => 'nullable|unique:subscribers,phone',
             'name' => 'nullable|string|max:100',
-            'country_code' => 'required|string|size:2|exists:countries,code2'
+            'country' => 'required|string|size:2|exists:countries,code2'
         ];
     }
 

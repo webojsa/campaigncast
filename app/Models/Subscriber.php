@@ -17,11 +17,15 @@ class Subscriber extends Model
         'phone',
         'push_token',
         'name',
-        'country_code',
+        'country',
         'status'
     ];
 
     public function user(): BelongsTo{
         return $this->belongsTo(User::class);
+    }
+
+    public function country():BelongsTo{
+        return $this->belongsTo(Country::class);
     }
 }
