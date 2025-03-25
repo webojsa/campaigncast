@@ -18,6 +18,11 @@
         @error('email') <span>{{ $message }}</span> @enderror
     </div>
     <div>
+        <label for="phone">Phone (mobile)</label>
+        <input id="phone" type="text" name="phone" value="{{ old('phone') }}">
+        @error('phone') <span>{{ $message }}</span> @enderror
+    </div>
+    <div>
         <label for="password">Password</label>
         <input id="password" type="password" name="password" required>
         @error('password') <span>{{ $message }}</span> @enderror
