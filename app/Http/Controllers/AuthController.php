@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
@@ -27,9 +28,10 @@ class AuthController extends Controller
 
         $user = User::where('email', $data['email'])->first();
         if (!$user || !Hash::check($data['password'], $user->password)) {
+            Log::channel('login')->error(['message' => 'Login failed','user_data' => $data]);
             return response()->json(['error' => 'Wrong credentials'], Response::HTTP_UNAUTHORIZED);
         }
-
+        Log::channel('login')->info(['message' => 'Login successful', 'user' => $user->getAttributes()]);
         $token = $user->createToken($user->name)->plainTextToken;
         return response()->json(['user' => $user, 'token' => $token]);
     }

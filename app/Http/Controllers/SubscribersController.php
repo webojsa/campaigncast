@@ -7,7 +7,7 @@ use App\Services\SubscribersService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+use Illuminate\Support\Facades\Log;
 class SubscribersController extends Controller
 {
     private $service;
@@ -23,10 +23,14 @@ class SubscribersController extends Controller
                 'subscriber' => $subscriber
             ], Response::HTTP_CREATED);
         }catch (\Throwable $e){
-            //TODO: Add log
+            Log::channel('error')->error([
+                'message' => 'Subscriber storing failed',
+                'error' => $e->getMessage(),
+                'user' => $request->user()->getAttributes()
+            ]);
             return response()->json([
                 'message' => 'Error: Subscriber not created',
-                'error' => $e->getMessage()
+                //'error' => $e->getMessage()
             ], Response::HTTP_BAD_REQUEST);
         }
     }
