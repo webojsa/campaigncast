@@ -2,6 +2,10 @@
 
 namespace App\Services\Welcome;
 
+use App\Jobs\SendWelcomeMailJob;
+use App\Jobs\SendWelcomePushJob;
+use App\Jobs\SendWelcomeSmsJob;
+use App\Jobs\SendWelcomeViberJob;
 use App\Models\User;
 use App\Services\Welcome\Channels\WelcomeEmailChannel;
 use App\Services\Welcome\Channels\WelcomePushChannel;
@@ -10,7 +14,6 @@ use App\Services\Welcome\Channels\WelcomeViberChannel;
 
 class WelcomeService
 {
-    private bool $queue = true;
     private User $user;
     private WelcomeEmailChannel $emailChannel;
     private WelcomePushChannel $pushChannel;
@@ -25,49 +28,64 @@ class WelcomeService
         $this->viberChannel = $viberChannel;
 
     }
-    public function setMode(bool $queue = null): void{
-        if($queue)
-            $this->queue = $queue;
-    }
-    public function send() :void
+
+    public function send(bool $toQueue = true) :void
     {
-        $this->sendMail();
+        $this->sendMail($toQueue);
         if($this->user->phone){
-            $this->sendSms();
-            $this->sendViber();
+            $this->sendSms($toQueue);
+            $this->sendViber($toQueue);
         }
         if($this->user->push_token){
-            $this->sendPush();
+            $this->sendPush($toQueue);
         }
 
     }
 
-    public function sendMail() :bool
+    public function sendMail(bool $toQueue = true) :bool
     {
+        if($toQueue){
+            SendWelcomeMailJob::dispatch($this->user);
+            return true;
+        }
         $this->emailChannel->send($this->user);
         return true;
     }
 
-    public function sendPush() :bool{
+    public function sendPush(bool $toQueue = true) :bool{
         if(!$this->user->push_token)
             return false;
+        if($toQueue){
+            SendWelcomePushJob::dispatch($this->user);
+            return true;
+        }
 
         $this->pushChannel->send($this->user);
         return true;
     }
 
-    public function sendSms() :bool{
+    public function sendSms(bool $toQueue = true) :bool{
         if(!$this->user->phone)
             return false;
+
+        if($toQueue){
+            SendWelcomeSmsJob::dispatch($this->user);
+            return true;
+        }
 
         $this->smsChannel->send($this->user);
         return true;
     }
 
-    public function sendViber(): bool
+    public function sendViber(bool $toQueue = true): bool
     {
         if(!$this->user->phone)
             return false;
+
+        if($toQueue){
+            SendWelcomeViberJob::dispatch($this->user);
+            return true;
+        }
 
         $this->viberChannel->send($this->user);
         return true;

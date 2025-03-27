@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Console\ClosureCommand;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
+use Dotenv\Dotenv;
 
 Artisan::command('inspire', function () {
     /** @var ClosureCommand $this */
@@ -10,8 +11,8 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 
-Artisan::command('test', function () {
-    $user = \App\Models\User::find(7);
-    //dd($user);
-    event(new \App\Events\UserChangedPhoneNumber($user));
+Artisan::command('testcmd', function () {
+    $user = \App\Models\User::find(9);
+   // dd($user);
+    event(new \App\Events\UserConfirmedEmail($user));
 });

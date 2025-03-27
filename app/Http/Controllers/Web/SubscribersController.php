@@ -9,6 +9,7 @@ use App\Traits\SelectOptions;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class SubscribersController extends Controller
@@ -30,8 +31,8 @@ class SubscribersController extends Controller
             return redirect()->route('subscribers.create')
                 ->with('success', 'Subscriber created successfully');
         }catch (\Throwable $e){
-            dd($e->getMessage());
-            //TODO: Add log
+           // dd($e->getMessage());
+            Log::channel()->error(['Message' => 'Subscriber storing failed', 'error' => $e->getMessage(), 'user' => $request->user()->getAttributes()]);
             return redirect()->route('subscribers.create')
                 ->with('error', 'Error: Subscriber not created');
         }

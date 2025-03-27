@@ -10,7 +10,7 @@ class WelcomeEmailChannel implements WelcomeMessageInterface
 {
 
     public function send(User $user): bool{
-        Log::channel('info')->info("Sending welcome email");
+        Log::channel('info')->info("Sending welcome email: {$user->email}");
         return true;
     }
 }
