@@ -19,14 +19,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::post('subscriber', [\App\Http\Controllers\SubscribersController::class,'storeSubscriber'])
         ->name('subscriber-create');
 
-    Route::group([
-        'prefix' => 'admin',
-        'middleware' => 'admin',
-        'as' => 'admin'
-    ], function(){
-        Route::get('dashboard', function () {
-            return response()->json(['message' => 'Welcome, AdminMIddleware']);
-        });
-    });
+});
 
+Route::group([
+    'prefix' => 'admin',
+    'middleware' => ['auth:sanctum','verified','admin'],
+    'as' => 'admin'
+], function(){
+    Route::get('dashboard', function () {
+        return response()->json(['message' => 'Welcome, AdminMIddleware']);
+    });
 });
