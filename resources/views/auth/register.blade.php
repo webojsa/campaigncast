@@ -9,13 +9,15 @@
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,600&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="min-h-screen bg-gradient-to-r from-indigo-100 via-white to-indigo-200 flex items-center justify-center">
+<body class="min-h-screen bg-gradient-to-r from-green-100 via-white to-green-200 flex items-center justify-center">
 
 <!-- Registration Form -->
 <div class="max-w-md w-full bg-white shadow-lg rounded-lg p-8">
     <!-- Logo or Title -->
     <div class="text-center mb-6">
-        <h1 class="text-2xl font-bold text-gray-800">CampaignCast</h1>
+        <div class="flex justify-center mt-8 space-x-4">
+            <img src="{{ asset('assets/img/CCLogo2.png') }}" alt="CampaignCast Logo" class="h-30 w-30">
+        </div>
         <p class="mt-1 text-gray-600">Create your account to get started</p>
     </div>
 
@@ -27,7 +29,7 @@
         <div>
             <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
             <input type="text" name="name" id="name" value="{{ old('name') }}" required
-                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
             @error('name')
             <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
             @enderror
@@ -37,7 +39,7 @@
         <div>
             <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
             <input type="email" name="email" id="email" value="{{ old('email') }}" required
-                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
             @error('email')
             <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
             @enderror
@@ -47,7 +49,7 @@
         <div>
             <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
             <input type="password" name="password" id="password" required
-                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
             @error('password')
             <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
             @enderror
@@ -57,7 +59,7 @@
         <div>
             <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirm Password</label>
             <input type="password" name="password_confirmation" id="password_confirmation" required
-                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                   class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm">
             @error('password_confirmation')
             <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
             @enderror
@@ -65,7 +67,7 @@
 
         <!-- Submit Button -->
         <div>
-            <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-500">
+            <button type="submit" class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-green-500">
                 Create Account
             </button>
         </div>
@@ -75,7 +77,7 @@
     <div class="mt-6 text-center">
         <p class="text-sm text-gray-600">
             Already have an account?
-            <a href="{{ route('login') }}" class="text-indigo-600 font-medium hover:underline">Login</a>
+            <a href="{{ route('login') }}" class="text-green-600 font-medium hover:underline">Login</a>
         </p>
     </div>
 </div>
