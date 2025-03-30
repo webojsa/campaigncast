@@ -1,7 +1,16 @@
-@extends('admin.layout')
+@extends('adminlte::page')
 
 @section('title', 'Admin Dashboard')
 
+@section('content_header')
+    {{-- Optional header --}}
+    <h1>Dashboard</h1>
+@stop
+
 @section('content')
-    <h2 class="text-3xl font-bold text-gray-800 text-center">Welcome to Admin Dashboard</h2>
-@endsection
+    {{-- Main content --}}
+    <div class="container-fluid">
+        <h1>Welcome to the Admin Dashboard!</h1>
+        <p>Here is your content.</p>
+    </div>
+@stop
