@@ -11,7 +11,9 @@
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
 
 <div class="w-full max-w-md bg-white rounded-lg shadow-md p-8">
-    <h1 class="text-2xl font-bold mb-6 text-center">Admin Login</h1>
+    <div class="flex justify-center mt-8 space-x-4">
+        <img src="{{ asset('assets/img/CCLogo2.png') }}" alt="CampaignCast Logo" class="h-30 w-30">
+    </div>
 
     @if($errors->any())
         <div class="bg-red-100 text-red-600 border border-red-500 p-3 rounded mb-4">
@@ -28,7 +30,7 @@
                 id="email"
                 name="email"
                 type="email"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                 required
             >
         </div>
@@ -39,14 +41,14 @@
                 id="password"
                 name="password"
                 type="password"
-                class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                class="mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-lg shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                 required
             >
         </div>
 
         <div class="mt-6">
             <button type="submit"
-                    class="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-500 focus:ring-opacity-50">
+                    class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50">
                 Login
             </button>
         </div>

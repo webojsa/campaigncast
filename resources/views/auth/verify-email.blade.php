@@ -9,7 +9,7 @@
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,600&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="min-h-screen bg-gradient-to-r from-indigo-100 via-white to-indigo-200 flex items-center justify-center">
+<body class="min-h-screen bg-gradient-to-r from-green-100 via-white to-green-200 flex items-center justify-center">
 
 <div class="max-w-md w-full bg-white shadow-lg rounded-lg p-8">
     <!-- Title -->
@@ -32,7 +32,7 @@
     <!-- Resend Verification Form -->
     <form method="POST" action="{{ route('verification.send') }}" class="mb-6">
         @csrf
-        <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-500">
+        <button type="submit" class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-green-500">
             Resend Verification Email
         </button>
     </form>
@@ -41,7 +41,7 @@
     <div>
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <button type="submit" class="w-full text-indigo-600 py-2 px-4 border border-indigo-600 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-indigo-500">
+            <button type="submit" class="w-full text-green-600 py-2 px-4 border border-green-600 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-green-500">
                 Logout
             </button>
         </form>
