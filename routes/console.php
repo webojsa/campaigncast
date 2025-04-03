@@ -12,8 +12,8 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 
-Artisan::command('testcmd', function () {
-    $user = \App\Models\User::find(9);
+Artisan::command('testevent', function () {
+    $user = \App\Models\User::find(7);
    // dd($user);
     event(new \App\Events\UserConfirmedEmail($user));
 });
